@@ -24,7 +24,7 @@ public class CategoryController {
         model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
 
-        return "index";
+        return "category/index";
 }
     @RequestMapping(value = "add", method= RequestMethod.GET)
     public String displayAddCategoryForm(Model model){

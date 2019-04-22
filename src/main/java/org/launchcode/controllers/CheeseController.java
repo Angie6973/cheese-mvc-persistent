@@ -52,14 +52,15 @@ public class CheeseController {
                                        Errors errors,
                                        @RequestParam int categoryId,
                                        Model model) {
+        Category cat= categoryDao.findOne(categoryId);
+        newCheese.setCategory(cat);
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             model.addAttribute("categories", categoryDao.findAll());
             return "cheese/add";
         }
-        Category cat = categoryDao.findOne(categoryId);
-        newCheese.setCategory(cat);
+
         cheeseDao.save(newCheese);
         return "redirect:";
     }
@@ -72,24 +73,24 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] ids) {
+    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
-        for (int id : ids) {
-            cheeseDao.delete(id);
+        for (int cheeseId : cheeseIds) {
+            cheeseDao.delete(cheeseId);
         }
 
         return "redirect:";
     }
 
-    @RequestMapping(value = "category", method =RequestMethod.GET)
-    public String category(Model model, @RequestParam int id) {
-        Category cat = categoryDao.findOne(id);
-        List<Cheese> cheeses = cat.getCheeses();
-        model.addAttribute("cheeses", cheeses);
-        model.addAttribute("title", "Cheeses in Category" + cat.getName());
-        return "cheese/index";
+   // @RequestMapping(value = "category", method =RequestMethod.GET)
+  //  public String category(Model model, @RequestParam int id) {
+     //   Category cat = categoryDao.findOne(id);
+      //  List<Cheese> cheeses = cat.getCheeses();
+      //  model.addAttribute("cheeses", cheeses);
+     //   model.addAttribute("title", "Cheeses in Category" + cat.getName());
+     //   return "cheese/index";
 
 
     }
 
-}
+
