@@ -5,12 +5,16 @@
         <h1 th:text="${title}">Default Title</h1>
 
         <nav th:replace="fragments :: navigation"></nav>
-        <ul>
-            <li th:each= "menu : ${menus}">
-                <a th:href =" ' /menu/view/' + ${menu.id}" th:text= "${menu.name}"></a>
+        <table class="table">
+        <tr>
+            <th>Name</th>
+        </tr>
 
-            </li>
-        </ul>
+          <tr th:each= "menu : ${menus}">
+              <td><a th:href =" ' /menu/view/' + ${menu.id}" th:text= "${menu.name}"></a></td>
+
+            </tr>
+        </table>
         <p><a href=" /menu/add">Add Menu</a></p>
 
 
