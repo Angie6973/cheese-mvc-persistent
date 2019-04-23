@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("menu")
+@RequestMapping(value ="menu")
 public class MenuController {
 
     @Autowired
-    MenuDao menuDao;
+    private MenuDao menuDao;
 
     @Autowired
-    CheeseDao cheeseDao;
+    private CheeseDao cheeseDao;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Menus");
         model.addAttribute("menus", menuDao.findAll());
@@ -66,8 +66,7 @@ public class MenuController {
     @RequestMapping(value = "add-item/{id}", method = RequestMethod.GET)
     public String DisplayAddMenuItemForm(Model model, @PathVariable int id) {
         Menu menu = menuDao.findOne(id);
-        AddMenuItemForm form = new AddMenuItemForm(
-                cheeseDao.findAll(), menu);
+        AddMenuItemForm form = new AddMenuItemForm(menu, cheeseDao.findAll());
         model.addAttribute("title", "Add item to menu:" + menu.getName());
         model.addAttribute("form", form);
         return "menu/add-item";
