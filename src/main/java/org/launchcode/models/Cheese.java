@@ -1,6 +1,4 @@
-package org.launchcode.models.forms;
-
-import org.launchcode.models.forms.Category;
+package org.launchcode.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

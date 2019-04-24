@@ -2,7 +2,7 @@ package org.launchcode.models.data;
 
 
 
-import org.launchcode.models.forms.Menu;
+import org.launchcode.models.Menu;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

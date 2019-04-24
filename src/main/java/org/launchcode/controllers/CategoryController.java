@@ -1,8 +1,10 @@
 package org.launchcode.controllers;
 
 
+import org.launchcode.models.Category;
 import org.launchcode.models.data.CategoryDao;
-import org.launchcode.models.forms.Category;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,30 +29,32 @@ public class CategoryController {
         model.addAttribute("title", "Categories");
 
         return "category/index";
-}
+//displayAddCategoryForm//
+    }
     @RequestMapping(value = "add", method= RequestMethod.GET)
     public String displayAddCategoryForm(Model model){
-
-        model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
+        model.addAttribute("title", "Add Category");
+
         return "category/add";
 
     }
+    //processAddCategoryForm
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCategoryForm(Model model,
+    public String processAddCategory(Model model,
         @ModelAttribute @Valid Category category,
-        Errors errors){
-        if (errors.hasErrors()){
-            model.addAttribute("title", "Add Category" );
+        Errors errors) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Category");
             return "category/add";
 
         }
         categoryDao.save(category);
-        return "redirect";
+        return "redirect:";
+
+        }
 
     }
 
 
 
-
-}
