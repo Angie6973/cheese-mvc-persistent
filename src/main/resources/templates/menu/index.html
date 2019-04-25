@@ -11,7 +11,7 @@
         <a href="/menu/add"><h5>Add New Menu</h5></a>
         <div th:each="menu: ${menus}">
             <a th:href="'/menu/view/' + ${menu.id}"><p th:text="${menu.name}"></p></a>
-        </hr>
+        <hr/>
         </div>
 
 

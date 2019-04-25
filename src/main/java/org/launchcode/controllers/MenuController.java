@@ -42,15 +42,15 @@ public class MenuController {
         return "menu/add";
     }
 
-    @RequestMapping(value = "add", method=RequestMethod.GET)
-    public String GetAddMenuForm(Model model)
+    //@RequestMapping(value = "add", method=RequestMethod.GET)
+   // public String GetAddMenuForm(Model model)
 
-    {
-        model.addAttribute("title", "Add Menu");
-        model.addAttribute(new Menu());
+   // {
+    //    model.addAttribute("title", "Add Menu");
+   //     model.addAttribute(new Menu());
 
-        return "menu/add";
-    }
+   //     return "menu/add";
+  //  }
 
     @RequestMapping(value ="add", method=RequestMethod.POST)
     public String ProcessAddMenuForm(Model model,
