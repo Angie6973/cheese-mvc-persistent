@@ -28,7 +28,7 @@ public class MenuController {
     @Autowired
     private CheeseDao cheeseDao;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("title", "Menus");
         model.addAttribute("menus", menuDao.findAll());
@@ -38,16 +38,18 @@ public class MenuController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("title", "Add Menu");
-        model.addAttribute(new org.launchcode.models.Menu());
+        model.addAttribute(new Menu());
         return "menu/add";
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String GetAddMenuForm(Model model) {
-            model.addAttribute("title", "Add Menu");
-            model.addAttribute(new Menu());
+    @RequestMapping(value = "add", method=RequestMethod.GET)
+    public String GetAddMenuForm(Model model)
 
-            return "menu/add";
+    {
+        model.addAttribute("title", "Add Menu");
+        model.addAttribute(new Menu());
+
+        return "menu/add";
     }
 
     @RequestMapping(value ="add", method=RequestMethod.POST)
