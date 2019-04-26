@@ -46,6 +46,14 @@ public class AddMenuItemForm {
     public void setCheeseId(int cheeseId) {
         this.cheeseId = cheeseId;
     }
+
+    public void setCheeses(Iterable<Cheese> cheeses) {
+        this.cheeses = cheeses;
+
+    }
+    public void setMenu(Menu menu){
+        this.menu=menu;
+    }
 }
 
 

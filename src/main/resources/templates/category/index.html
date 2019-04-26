@@ -14,13 +14,13 @@
         <th>Name</th>
     </tr>
     <tr th:each ="category : ${categories}">
-        <ul th:text = "${category.name}"></ul>
+        <ul th:text =  th:href="'/cheese/category?id=' + ${category.id} th:text="${category.name}"></ul>
     </tr>
 
 </table>
 <a href= "/category/add">Add Category</a>
 </body>
-</html
+</html>
 
 
 

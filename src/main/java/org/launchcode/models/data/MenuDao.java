@@ -11,4 +11,9 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface MenuDao extends CrudRepository<Menu, Integer> {
+
+
+    Menu findById(int menuId);
+
+    void deleteById(int menuId);
 }

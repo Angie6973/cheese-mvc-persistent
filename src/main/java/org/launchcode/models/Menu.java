@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class Menu {
+public class Menu extends Cheese {
 
     @NotNull
     @Size(min = 3, max = 15)
@@ -40,9 +40,9 @@ public class Menu {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   // public void setId(int id) {
+     //   this.id = id;
+   // }
 
     public List<Cheese> getCheeses() {
         return cheeses;
@@ -52,7 +52,10 @@ public class Menu {
         cheeses.add(item);
     }
 
-    public void setCheeses(List<Cheese> cheeses) {
-        this.cheeses = cheeses;
+    public void removeItem(Cheese item) {cheeses.remove(item);}
+
+    public Menu get() {
+
+        return null;
     }
 }

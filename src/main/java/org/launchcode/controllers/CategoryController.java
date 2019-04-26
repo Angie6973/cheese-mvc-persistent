@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -21,29 +22,31 @@ import javax.validation.Valid;
 
 public class CategoryController {
     @Autowired
-    private CategoryDao categoryDao;
+    CategoryDao categoryDao;
 
-    @RequestMapping(value= "")
-    public String index (Model model) {
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String index(Model model, @RequestParam(defaultValue = "1") int id) {
         model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
 
         return "category/index";
 //displayAddCategoryForm//
     }
-    @RequestMapping(value = "add", method= RequestMethod.GET)
-    public String displayAddCategoryForm(Model model){
-        model.addAttribute(new Category());
+
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String add(Model model) {
+        model.addAttribute("category", new Category());
         model.addAttribute("title", "Add Category");
 
         return "category/add";
 
     }
+
     //processAddCategoryForm
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCategory(Model model,
-        @ModelAttribute @Valid Category category,
-        Errors errors) {
+    public String add(Model model,
+                      @ModelAttribute @Valid Category category,
+                      Errors errors) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Category");
             return "category/add";
@@ -52,9 +55,24 @@ public class CategoryController {
         categoryDao.save(category);
         return "redirect:";
 
-        }
-
     }
 
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemoveCategoryForm(Model model) {
+        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("title", "Remove Category");
+        return "category/remove";
+    }
 
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveCategoryForm(@RequestParam int[] categoryIds) {
+
+        for (int categoryId : categoryIds) {
+            categoryDao.delete(categoryId);
+        }
+
+        return "redirect:";
+    }
+
+}
 
