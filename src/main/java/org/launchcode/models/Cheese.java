@@ -29,12 +29,15 @@ public class Cheese {
     @ManyToMany(mappedBy = "cheeses")
     private List<Menu> menus;
 
+
     public Cheese(String name, String description) {
         this.name = name;
         this.description = description;
+        //this.category = category;
     }
 
     public Cheese() { }
+
 
     public int getId() {
         return id;
@@ -53,9 +56,9 @@ public class Cheese {
     }
 
     public void setDescription(String description) {
-
         this.description = description;
     }
+
 
     public Category getCategory() {
         return category;
@@ -64,4 +67,5 @@ public class Cheese {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }
