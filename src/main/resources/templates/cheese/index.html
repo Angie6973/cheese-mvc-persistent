@@ -23,7 +23,7 @@
             th:each="cheese : ${cheeses}">
         <td th:text="${cheese.name}"></td>
         <td th:text="${cheese.description}"></td>
-        <td th:text="${cheese.category}"></td>
+        <td th:text="${cheese.category.name}"></td>
     </tr>
 
 </table>
